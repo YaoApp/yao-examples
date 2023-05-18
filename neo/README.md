@@ -6,14 +6,20 @@ Example of an AI assistant.
 
 See [documentation](https://yaoapps.com/doc/%E4%BB%8B%E7%BB%8D/%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97) for more details.
 
-Install Yao Command
+**Install Yao Command**
+
+Skip this step if the yao command has already been installed.
 
 See [Install](https://yaoapps.com/doc/%E4%BB%8B%E7%BB%8D/%E5%AE%89%E8%A3%85%E8%B0%83%E8%AF%95) for more details.
+
+**Download Source Code**
 
 ```bash
 git clone https://github.com/YaoApp/yao-examples.git
 cd yao-examples/neo
 ```
+
+**Replace Environment Variables**
 
 ```bash
 cp env-sample.env .env
@@ -23,9 +29,13 @@ cp env-sample.env .env
 # ...
 ```
 
+**Migrate & Make Demo Data**
+
 ```bash
 yao migrate --reset && yao run scripts.setup.Data
 ```
+
+**Start Server**
 
 ```bash
 yao start
