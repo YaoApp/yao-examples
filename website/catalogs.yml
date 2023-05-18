@@ -1,0 +1,21 @@
+- repo: https://github.com/YaoApp/yao-examples
+  name: Finance
+  en_name: Finance
+  summary: |
+    Finance
+
+  url: https://github.com/YaoApp/yao-examples
+  images:
+    - https://xxx.com/finance.png
+    - https://xxx.com/finance.png
+
+- repo: https://github.com/YaoApp/yao-examples
+  name: Finance
+  en_name: Finance
+  summary: |
+    Finance
+
+  url: https://github.com/YaoApp/yao-examples
+  images:
+    - https://xxx.com/finance.png
+    - https://xxx.com/finance.png
