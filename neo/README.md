@@ -11,6 +11,9 @@ cd yao-examples/neo
 
 ```bash
 cp env-sample.env .env
+
+# REPLACE THE ENVIRONMENT VARIABLES TO YOUR OWN SETTINGS
+# ...
 ```
 
 ```bash
