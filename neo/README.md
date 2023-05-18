@@ -4,10 +4,14 @@
 
 Example of an AI assistant.
 
-See [documentation](https://yaoapps.com/en-US/doc/Introduction/Getting%20Started) for more details.
+See [documentation](https://yaoapps.com/doc/%E4%BB%8B%E7%BB%8D/%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97) for more details.
+
+Install Yao Command
+
+See [Install](https://yaoapps.com/doc/%E4%BB%8B%E7%BB%8D/%E5%AE%89%E8%A3%85%E8%B0%83%E8%AF%95) for more details.
 
 ```bash
-git clone git@github.com:YaoApp/yao-examples.git
+git clone https://github.com/YaoApp/yao-examples.git
 cd yao-examples/neo
 ```
 
@@ -15,6 +19,7 @@ cd yao-examples/neo
 cp env-sample.env .env
 
 # REPLACE THE ENVIRONMENT VARIABLES TO YOUR OWN SETTINGS
+# 修改为你自己的配置
 # ...
 ```
 
