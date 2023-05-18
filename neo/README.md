@@ -35,7 +35,7 @@ cp env-sample.env .env
 yao migrate --reset && yao run scripts.setup.Data
 ```
 
-**Start Server**
+**Server Start**
 
 ```bash
 yao start
