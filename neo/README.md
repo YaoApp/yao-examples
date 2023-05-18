@@ -1,5 +1,7 @@
 # Neo Example
 
+![screenshot](docs/screenshot.png)
+
 Example of an AI assistant.
 
 See [documentation](https://yaoapps.com/en-US/doc/Introduction/Getting%20Started) for more details.
