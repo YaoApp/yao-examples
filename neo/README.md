@@ -2,7 +2,24 @@
 
 Example of an AI assistant.
 
-Doc: [https://yaoapps.com/doc](https://yaoapps.com/doc)
+See [documentation](https://yaoapps.com/en-US/doc/Introduction/Getting%20Started) for more details.
+
+```bash
+git clone git@github.com:YaoApp/yao-examples.git
+cd yao-examples/neo
+```
+
+```bash
+cp env-sample.env .env
+```
+
+```bash
+yao migrate --reset && yao run scripts.setup.Data
+```
+
+```bash
+yao start
+```
 
 ## Default Admin Account
 
