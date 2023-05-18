@@ -1,0 +1,15 @@
+{
+  "name": "Photo Preview API",
+  "version": "1.0.0",
+  "description": "Photo API",
+  "guard": "-",
+  "paths": [
+    {
+      "path": "/*path",
+      "method": "GET",
+      "process": "fs.system.ReadFile",
+      "in": ["$param.path"],
+      "out": { "status": 200, "type": "image/png" }
+    }
+  ]
+}

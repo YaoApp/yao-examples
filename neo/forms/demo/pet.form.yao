@@ -1,0 +1,310 @@
+{
+  "name": "宠物",
+  "action": {
+    "bind": { "model": "pet", "option": {} }
+  },
+  "layout": {
+    "actions": [
+      {
+        "title": "保存",
+        "icon": "icon-check",
+
+        "showWhenAdd": true,
+
+        "style": "primary",
+        "action": [
+          {
+            "name": "Submit",
+            "type": "Form.submit",
+            "payload": {}
+          },
+          {
+            "name": "Back",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      },
+      {
+        "title": "返回",
+        "divideLine": true,
+        "showWhenAdd": true,
+        "showWhenView": true,
+        "icon": "icon-arrow-left",
+        "action": [
+          {
+            "name": "closeModal",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      },
+      {
+        "title": "测试云函数",
+        "icon": "icon-cloud",
+        "action": [
+          { "name": "Submit", "type": "Form.submit", "payload": {} },
+          {
+            "name": "Foo",
+            "type": "Service.foo",
+            "payload": { "method": "Bar", "args": ["[[$Submit]]"] }
+          }
+        ]
+      },
+      {
+        "title": "测试Studio",
+        "icon": "icon-layers",
+        "action": [
+          {
+            "name": "Hello",
+            "type": "Studio.hello",
+            "payload": { "method": "World", "args": ["{{id}}", "{{name}}"] }
+          }
+        ]
+      }
+    ],
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "width": 12,
+              "name": "昵称"
+            },
+            {
+              "width": 12,
+              "name": "类型"
+            },
+
+            {
+              "width": 12,
+              "name": "入院状态"
+            },
+            {
+              "width": 12,
+              "name": "状态"
+            },
+            {
+              "width": 12,
+              "name": "是否在线"
+            },
+            {
+              "width": 12,
+              "name": "治疗状态"
+            },
+            {
+              "width": 12,
+              "name": "入院时间"
+            },
+            {
+              "width": 12,
+              "name": "花费"
+            },
+
+            {
+              "width": 12,
+              "name": "宠物外观"
+            },
+            {
+              "width": 24,
+              "name": "详细描述"
+            },
+            {
+              "width": 24,
+              "name": "相关图片"
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "config": { "showAnchor": true },
+
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      }
+    }
+  },
+  "fields": {
+    "form": {
+      "昵称": {
+        "bind": "name",
+        "edit": {
+          "type": "Input",
+          "props": {
+            "itemProps": {
+              "rules": [{ "required": true }]
+            },
+            "placeholder": "昵称"
+          }
+        }
+      },
+
+      "类型": {
+        "bind": "type",
+        "edit": {
+          "type": "Select",
+          "props": {
+            "placeholder": "类型",
+            "options": [
+              {
+                "label": "cat",
+                "value": "cat"
+              },
+              {
+                "label": "dog",
+                "value": "dog"
+              },
+              {
+                "label": "others",
+                "value": "others"
+              }
+            ],
+            "$on:change": {
+              "process": "scripts.stat.OnChange",
+              "query": {}
+            }
+          }
+        }
+      },
+      "入院状态": {
+        "bind": "status",
+        "edit": {
+          "type": "Select",
+          "props": {
+            "placeholder": "入院状态",
+            "options": [
+              {
+                "label": "checked",
+                "value": "checked"
+              },
+              {
+                "label": "curing",
+                "value": "curing"
+              },
+              {
+                "label": "cured",
+                "value": "cured"
+              }
+            ]
+          }
+        }
+      },
+      "状态": {
+        "bind": "mode",
+        "edit": {
+          "type": "Select",
+          "props": {
+            "options": [
+              {
+                "label": "enabled",
+                "value": "enabled"
+              },
+              {
+                "label": "disabled",
+                "value": "disabled"
+              }
+            ]
+          }
+        }
+      },
+      "是否在线": {
+        "bind": "online",
+        "edit": {
+          "type": "RadioGroup",
+          "props": {
+            "options": [
+              {
+                "label": "开启",
+                "value": "1"
+              },
+              {
+                "label": "关闭",
+                "value": "0"
+              }
+            ]
+          }
+        }
+      },
+      "治疗状态": {
+        "bind": "curing_status",
+        "edit": {
+          "type": "Select",
+          "props": {
+            "defaultValue": "0",
+            "options": [
+              { "label": "未治疗", "value": "0" },
+              { "label": "已治疗", "value": "1" },
+              { "label": "放弃治疗", "value": "2" }
+            ]
+          }
+        }
+      },
+
+      "入院时间": {
+        "bind": "stay",
+        "edit": {
+          "props": {
+            "placeholder": "请选择入院时间",
+            "showTime": { "format": "HH:mm:ss" }
+          },
+          "type": "DatePicker"
+        }
+      },
+      "详细描述": {
+        "bind": "detail",
+        "edit": {
+          "props": { "rows": 5 },
+          "type": "TextArea"
+        }
+      },
+      "宠物外观": {
+        "bind": "appearance",
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "label": "蓝绿色",
+                "value": 1
+              },
+              {
+                "label": "紫色",
+                "value": 2
+              },
+              {
+                "label": "土黄",
+                "value": 3
+              }
+            ]
+          },
+          "type": "CheckboxGroup"
+        }
+      },
+
+      "相关图片": {
+        "bind": "images",
+        "view": { "type": "Image", "compute": "Download" },
+        "edit": {
+          "type": "Upload",
+          "compute": "Upload",
+          "props": {
+            "filetype": "image",
+            "$api": { "process": "fs.system.Upload" }
+          }
+        }
+      },
+      "花费": {
+        "bind": "cost",
+        "edit": {
+          "type": "Input",
+          "props": { "type": "number" }
+        }
+      }
+    }
+  }
+}

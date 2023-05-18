@@ -1,0 +1,329 @@
+{
+  "name": "宠物",
+  "action": {
+    "bind": { "model": "pet", "option": { "form": "demo.pet" } },
+    "search": {
+      "default": [{ "orders": [{ "column": "id", "option": "desc" }] }, 1, 10]
+    }
+  },
+  "layout": {
+    "primary": "id",
+    "header": {
+      "preset": {}
+    },
+    "filter": {
+      "columns": [
+        {
+          "name": "昵称",
+          "width": 4
+        },
+        {
+          "name": "类型",
+          "width": 4
+        }
+      ],
+      "actions": [
+        {
+          "icon": "icon-plus",
+          "width": 3,
+          "action": {
+            "Common.openModal": {
+              "width": 1200,
+              "Form": {
+                "type": "edit",
+                "model": "demo.pet"
+              }
+            }
+          },
+          "title": "添加"
+        }
+      ]
+    },
+    "table": {
+      "props": {},
+      "columns": [
+        {
+          "width": 150,
+          "name": "昵称"
+        },
+        {
+          "width": 200,
+          "name": "图片"
+        },
+        {
+          "name": "宠物外观",
+          "width": 200
+        },
+        {
+          "name": "类型",
+          "width": 150
+        },
+        {
+          "name": "入院状态",
+          "width": 150
+        },
+        {
+          "name": "状态",
+          "width": 150
+        },
+        {
+          "name": "是否在线",
+          "width": 150
+        },
+
+        {
+          "name": "花费",
+          "width": 150
+        },
+        {
+          "name": "入院时间",
+          "width": 200
+        },
+        {
+          "name": "创建时间",
+          "width": 200
+        },
+        {
+          "name": "更新时间",
+          "width": 200
+        }
+      ],
+      "operation": {
+        "fold": false,
+        "actions": [
+          {
+            "action": {
+              "Common.openModal": {
+                "width": 1200,
+                "Form": {
+                  "type": "view",
+                  "model": "demo.pet"
+                }
+              }
+            },
+            "title": "查看",
+            "icon": "icon-eye"
+          },
+          {
+            "title": "编辑",
+            "icon": "icon-edit-2",
+            "action": {
+              "Common.openModal": {
+                "Form": {
+                  "type": "edit",
+                  "model": "demo.pet"
+                }
+              }
+            }
+          },
+          {
+            "icon": "icon-trash-2",
+            "action": {
+              "Table.delete": {}
+            },
+            "style": "danger",
+            "title": "删除"
+          }
+        ]
+      }
+    }
+  },
+  "fields": {
+    "filter": {
+      "昵称": {
+        "bind": "where.name.match",
+        "edit": {
+          "type": "Input",
+          "compute": "Trim",
+          "props": {
+            "placeholder": "请输入昵称搜索"
+          }
+        }
+      },
+      "类型": {
+        "bind": "where.type.eq",
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "label": "cat",
+                "value": "cat"
+              },
+              {
+                "label": "dog",
+                "value": "dog"
+              },
+              {
+                "label": "others",
+                "value": "others"
+              }
+            ]
+          },
+          "type": "Select"
+        }
+      }
+    },
+    "table": {
+      "昵称": {
+        "bind": "name",
+        "edit": {
+          "type": "Input",
+          "props": {
+            "itemProps": {
+              "rules": [{ "required": true }]
+            },
+            "placeholder": "昵称"
+          }
+        },
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "图片": {
+        "view": { "type": "Image", "compute": "Download" },
+        "edit": {
+          "type": "Upload",
+          "compute": "Upload",
+          "props": {
+            "filetype": "image",
+            "$api": { "process": "fs.system.Upload" }
+          }
+        },
+
+        "bind": "images"
+      },
+      "宠物外观": {
+        "bind": "appearance",
+        "view": {
+          "type": "Tag",
+          "props": {
+            "options": [
+              { "label": "蓝绿色", "value": 1, "color": "#126e82" },
+              { "label": "紫色", "value": 2, "color": "#681752" },
+              { "label": "土黄", "value": 3, "color": "#815f25" }
+            ]
+          }
+        }
+      },
+      "类型": {
+        "bind": "type",
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "type": "Select",
+          "props": {
+            "placeholder": "类型",
+            "options": [
+              {
+                "label": "cat",
+                "value": "cat"
+              },
+              {
+                "label": "dog",
+                "value": "dog"
+              },
+              {
+                "label": "others",
+                "value": "others"
+              }
+            ]
+          }
+        }
+      },
+      "入院状态": {
+        "bind": "status",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "type": "Select",
+          "props": {
+            "placeholder": "入院状态",
+            "options": [
+              {
+                "label": "checked",
+                "value": "checked"
+              },
+              {
+                "label": "curing",
+                "value": "curing"
+              },
+              {
+                "label": "cured",
+                "value": "cured"
+              }
+            ]
+          }
+        }
+      },
+      "状态": {
+        "bind": "mode",
+        "edit": {
+          "type": "Select",
+          "props": {
+            "options": [
+              {
+                "label": "enabled",
+                "value": "enabled"
+              },
+              {
+                "label": "disabled",
+                "value": "disabled"
+              }
+            ]
+          }
+        },
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "是否在线": {
+        "bind": "online",
+
+        "view": {
+          "type": "Switch",
+          "props": {
+            "checkedValue": "1",
+            "unCheckedValue": "0",
+            "checkedChildren": "开启",
+            "unCheckedChildren": "关闭"
+          }
+        }
+      },
+      "入院时间": {
+        "bind": "stay",
+        "edit": {
+          "props": {
+            "placeholder": "请选择入院时间",
+            "showTime": { "format": "HH:mm:ss" }
+          },
+          "type": "DatePicker"
+        },
+        "view": {
+          "type": "Text",
+          "props": { "format": "YYYY年M月D日" }
+        }
+      },
+      "创建时间": {
+        "bind": "created_at",
+        "view": {
+          "type": "Text",
+          "props": { "format": "YYYY年M月D日" }
+        }
+      },
+      "更新时间": {
+        "bind": "updated_at",
+
+        "view": {
+          "type": "Text",
+          "props": { "format": "YYYY年M月D日" }
+        }
+      }
+    }
+  }
+}

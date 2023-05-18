@@ -1,0 +1,9 @@
+.DS_Store
+*/.env
+*/logs
+*/data/*
+*/db/*
+*/public/iframe/*
+*/.DS_Store
+!*/data/README.md
+!*/db/README.md

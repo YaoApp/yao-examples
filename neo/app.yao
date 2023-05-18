@@ -1,0 +1,22 @@
+{
+  "name": "::Demo Application",
+  "short": "::Demo",
+  "description": "::Another yao application",
+  "version": "0.10.3",
+  "adminRoot": "admin",
+  "setup": "scripts.setup.Data",
+  "menu": { "process": "flows.app.menu" },
+  "optional": {
+    "remoteCache": true,
+    /**
+     * Admin API Setting:
+     * - PATH:        {"api":"/neo"}
+     * - URL:         {"api":"http://localhost:5099/api/__yao/neo"}
+     *
+     * Studio API Setting:
+     * - Studio PATH: {"api":"/neo", "studio":true }
+     * - Studio URL:  {"api":"http://localhost:5077/neo", "studio":true }
+     */
+    "neo": { "api": "/neo", "studio": true }
+  }
+}

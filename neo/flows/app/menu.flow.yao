@@ -1,0 +1,78 @@
+{
+  "name": "APP Menu",
+  "nodes": [],
+  "output": {
+    "setting": [
+      {
+        "blocks": 0,
+        "icon": "icon-user",
+        "name": "管理员",
+        "path": "/x/Table/admin.user",
+        "visible_menu": 0
+      },
+      {
+        "icon": "icon-settings",
+        "id": 999999,
+        "name": "设置",
+        "path": "/x/Form/demo.pet/1/edit",
+        "dot": true,
+        "children": [
+          {
+            "name": "设置项演示",
+            "badge": 24,
+            "path": "/x/Form/demo.pet/1/edit"
+          },
+          { "name": "系统设置", "path": "/setting" }
+        ]
+      }
+    ],
+    "items": [
+      {
+        "blocks": 0,
+        "icon": "icon-book",
+        "name": "演示",
+        "path": "/x/Dashboard/kanban",
+        "visible_menu": 0,
+        "badge": 6,
+        "children": [
+          {
+            "blocks": 0,
+            "icon": "icon-activity",
+            "name": "看板",
+            "path": "/x/Dashboard/kanban",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "icon": "icon-activity",
+            "name": "图表",
+            "path": "/x/Chart/pet",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "name": "表格",
+            "path": "/x/Table/demo.pet",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "name": "表单(编辑)",
+            "path": "/x/Form/demo.pet/1/edit",
+            "visible_menu": 1
+          },
+          {
+            "name": "表单(查看)",
+            "path": "/x/Form/demo.pet/1/view",
+            "visible_menu": 1
+          },
+          {
+            "name": "自定义页面",
+            "path": "/iframe?src=/demo/pet.html",
+            "visible_menu": 1
+          }
+        ]
+      }
+    ]
+  }
+}

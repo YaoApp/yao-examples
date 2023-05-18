@@ -1,0 +1,22 @@
+/*
+Test:
+curl --location --request POST --X POST 'http://127.0.0.1:5099/api/aigc/translate' \
+--header 'User-Agent: Apipost client Runtime/+https://www.apipost.cn/' \
+--header 'Content-Type: application/json' \
+--data '{"content":"你好"}'
+ */
+{
+  "name": "自定义接口",
+  "version": "1.0.0",
+  "description": "自定义API接口",
+  "guard": "-",
+  "paths": [
+    {
+      "path": "translate",
+      "method": "POST",
+      "process": "aigcs.translate",
+      "in": ["$payload.content"],
+      "out": { "status": 200, "type": "application/json" }
+    }
+  ]
+}

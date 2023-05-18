@@ -1,0 +1,86 @@
+{
+  "name": "组合看板",
+  "config": { "full": false },
+  "action": {
+    "data": { "process": "scripts.dash.Data" }
+  },
+  "layout": {
+    "dashboard": {
+      "columns": [
+        { "name": "宠物数量", "width": 6 },
+        { "name": "宠物类型", "width": 6 },
+        { "name": "当月收入", "width": 6 },
+        { "name": "医师数量", "width": 6 },
+        { "name": "收入", "width": 8 },
+        { "name": "支出", "width": 8 },
+        { "name": "综合评分", "width": 8 },
+        { "name": "宠物列表", "width": 24 }
+      ]
+    }
+  },
+  "fields": {
+    "dashboard": {
+      "宠物数量": {
+        "bind": "pet_count",
+        "view": { "type": "chart/Number", "props": { "unit": "个" } }
+      },
+      "宠物类型": {
+        "bind": "pet_type",
+        "view": { "type": "chart/Number", "props": { "unit": "种" } }
+      },
+      "当月收入": {
+        "bind": "income_monthly",
+        "view": { "type": "chart/Number", "props": { "unit": "元" } }
+      },
+      "医师数量": {
+        "bind": "doctor_count",
+        "view": { "type": "chart/Number", "props": { "unit": "个" } }
+      },
+      "收入": {
+        "bind": "income",
+        "out": "scripts.stat.Income",
+        "view": {
+          "type": "chart/NumberChart",
+          "props": {
+            "prefix": "¥",
+            "decimals": 2,
+            "nameKey": "date",
+            "valueKey": "value"
+          }
+        }
+      },
+      "支出": {
+        "bind": "cost",
+        "view": {
+          "type": "chart/NumberChart",
+          "props": {
+            "color": "red",
+            "prefix": "¥",
+            "decimals": 2,
+            "nameKey": "date",
+            "valueKey": "value"
+          }
+        }
+      },
+      "综合评分": {
+        "bind": "rate",
+        "view": {
+          "type": "chart/NumberChart",
+          "props": {
+            "color": "orange",
+            "unit": "分",
+            "decimals": 1,
+            "nameKey": "date",
+            "valueKey": "value"
+          }
+        }
+      },
+      "宠物列表": {
+        "view": {
+          "type": "base/Table",
+          "props": { "model": "demo.pet", "onChangeEvent": false }
+        }
+      }
+    }
+  }
+}
