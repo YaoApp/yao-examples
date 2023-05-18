@@ -116,18 +116,18 @@ function PageAfter(content) {
  */
 function Page(name, html, css, js) {
   const fs = new FS("dsl");
-  const tmp = `${name}-${new Date().getTime()}`;
+  const tmp = `${new Date().getTime()}`;
   console.log(name, tmp);
 
-  fs.WriteFile(`/public/iframe/details/${tmp}.html`, html);
-  fs.WriteFile(`/public/iframe/details/css/${tmp}.css`, css);
-  fs.WriteFile(`/public/iframe/details/js/${tmp}.js`, js);
+  fs.WriteFile(`/public/iframe/details/${tmp}/index.html`, html);
+  fs.WriteFile(`/public/iframe/details/${tmp}/css/${name}.css`, css);
+  fs.WriteFile(`/public/iframe/details/${tmp}/js/${name}.js`, js);
 
-  ssWrite(`\n\n[点击查看详情 ${name}.html](/details/${tmp}.html)`);
+  ssWrite(`\n\n[点击查看详情 ${name}.html](/details/${tmp}/index.html)`);
 
   return {
-    url: `http://localhost:5099/details/${tmp}.html`,
-    path: `/details/${tmp}.html`,
-    iframe: `/iframe?src=/iframe/details/${tmp}.html`,
+    url: `http://localhost:5099/details/${tmp}/index.html`,
+    path: `/details/${tmp}/index.html`,
+    iframe: `/iframe?src=/iframe/details/${tmp}/index.html`,
   };
 }
