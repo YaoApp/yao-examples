@@ -107,4 +107,12 @@ SD_PASS=123456
 
 使用 docker 运行:
 
-`docker run -d --name neo -p 5099:5099 -p 5077:5077 -e http_proxy="<代理url地址>" -e OPENAI_KEY="<ChatGPT的key>" -e https_proxy="<代理地址url>" -e YAO_DOMAIN="<http://宿主机的ip地址:端口>" yaoapp/demo-neo:0.10.3-amd64`
+```
+docker run -d --name neo -p 5099:5099 -p 5077:5077 \
+ -e http_proxy="<代理url地址>" \
+ -e OPENAI_KEY="<ChatGPT的key>" \
+ -e https_proxy="<代理地址url>" \
+ -e YAO_HOST="<http://宿主机的ip地址:端口>" \
+ yaoapp/demo-neo:0.10.3-amd64
+
+ ```
