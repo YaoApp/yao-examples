@@ -1,6 +1,6 @@
 # Neo Example
 
-![screenshot](docs/screenshot.png)
+![screenshot](https://release-bj-1252011659.cos.ap-beijing.myqcloud.com/bug/screenshot.png)
 
 Example of an AI assistant.
 
