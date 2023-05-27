@@ -22,7 +22,7 @@ const Templates = {
     - The field "type" of the template is the type of pet, should be one of "cat", "dog", "others".
     - The field "status" of the template is the status of pet, should be one of "checked", "curing", "cured".
     - The field "mode" of the template is the mode of pet, should be one of "enabled", "disabled".
-    - The field "stay" of the template is the stay time of pet, should be a integer, the unit is second.
+    - The field "stay" of the template is the stay time of pet, should be a Datetime, the format Unix TIMESTAMP in seconds.
     - The field "cost" of the template is the cost of pet, should be a integer, the unit is dollar.
     - The field "doctor_id" of the template is the doctor id of pet, should be 1 always.
     `,
@@ -41,17 +41,17 @@ function DataBefore(context, messages) {
   messages = messages || [];
   const { path } = context;
   if (path === undefined) {
-    done("Error: path not found.\n");
+    done("出错啦: 未找到有效路径\n");
     return false;
   }
 
   const tpl = Templates[path];
   if (tpl === undefined) {
-    done(`Error: ${path} template not found.\n`);
+    done("出错啦: 当前页没有可生成的测试数据\n");
     return false;
   }
 
-  ssWrite(`Found the ${path} generate rules\n`);
+  // ssWrite(`Found the ${path} generate rules\n`);
   return { template: tpl.data, explain: tpl.explain };
 }
 
@@ -66,11 +66,18 @@ function DataAfter(content, context) {
   const data = response.data || [];
   if (data.length > 0) {
     // Print data preview
-    ssWrite(`\n`);
+    ssWrite(`\r\n`);
     ssWrite(`| name | type | status | mode | stay | cost | doctor_id |\n`);
     ssWrite(`| ---- | ---- | ------ | ---- | ---- | ---- | --------- |\n`);
     data.forEach((item) => {
-      message = `| ${item.name} |  ${item.type} |  ${item.status} | ${item.mode} | ${item.stay} | ${item.cost} | ${item.doctor_id}|\n`;
+      let stay = new Date().toISOString().split("T")[0];
+      try {
+        stay =
+          new Date(item.stay * 1000).toISOString().split("T")[0] + " 08:00:00";
+      } catch (e) {
+        stay = new Date().toISOString().split("T")[0] + " 08:00:00";
+      }
+      message = `| ${item.name} |  ${item.type} |  ${item.status} | ${item.mode} | ${stay} | ${item.cost} | ${item.doctor_id}|\n`;
       ssWrite(message);
     });
     ssWrite(`  \n\n`);
@@ -88,6 +95,12 @@ function DataAfter(content, context) {
 function Data(payload, context) {
   console.log(payload, context);
   payload.forEach((item) => {
+    try {
+      item.stay =
+        new Date(item.stay * 1000).toISOString().split("T")[0] + " 08:00:00";
+    } catch (e) {
+      item.stay = new Date().toISOString().split("T")[0] + " 08:00:00";
+    }
     Process("models.pet.Save", item);
   });
   return true;
